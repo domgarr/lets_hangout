@@ -12,4 +12,9 @@ public class TestController {
 	public String showIndex() {
 		return "index";
 	}
+	
+	@GetMapping("/createPoll")
+	public String createPoll() {
+		return "create-poll-form";
+	}
 }
