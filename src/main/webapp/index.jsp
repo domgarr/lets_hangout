@@ -13,17 +13,17 @@
   <body>
     <div class="container">
  		 <div class="jumbotron">
-		  <h1 class="display-4">Let's Hangout</h1>
-		  <p class="lead">Do you and a bunch of friends want to hang out... but have no idea what to do?</p>
-		  <hr class="my-4">
-		  <p>Lets fix that!</p>
-		  <p>
-		  Start by creating a poll, add some suggestions, and let the group vote on what to do!
-		  </p>
-		  <p class="lead">
-		    <a class="btn btn-primary btn-lg" href="test/createPoll" role="button">Create a poll</a>
-		  </p>
-</div>
+			  <h1 class="display-4">Let's Hangout</h1>
+			  <p class="lead">Do you and a bunch of friends want to hang out... but have no idea what to do?</p>
+			  <hr class="my-4">
+			  <p>Lets fix that!</p>
+			  <p>
+			  Start by creating a poll, add some suggestions, and let the group vote on what to do!
+			  </p>
+			  <p class="lead">
+			    <a class="btn btn-primary btn-lg" href="test/createPoll" role="button">Create a poll</a>
+			  </p>
+		 </div>
 	</div>
 
     <!-- Optional JavaScript -->
