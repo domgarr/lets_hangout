@@ -20,7 +20,7 @@ public class Hangout {
 	private String title;
 	
 	@Column(name="description")
-	private String descritpion;
+	private String description;
 	
 	public Hangout() {}
 
@@ -32,12 +32,12 @@ public class Hangout {
 		this.title = title;
 	}
 
-	public String getDescritpion() {
-		return descritpion;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescritpion(String descritpion) {
-		this.descritpion = descritpion;
+	public void setDescription(String descritpion) {
+		this.description = descritpion;
 	}
 
 	public void setId(int id) {
@@ -50,6 +50,6 @@ public class Hangout {
 
 	@Override
 	public String toString() {
-		return "Hangout [id=" + id + ", title=" + title + ", descritpion=" + descritpion + "]";
+		return "Hangout [id=" + id + ", title=" + title + ", descritpion=" + description + "]";
 	}
 }

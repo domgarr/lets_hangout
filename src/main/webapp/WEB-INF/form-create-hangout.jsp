@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -22,14 +24,14 @@
 	  		</div>
 	  	
 			 <div id="content">
-				  <form>
+				  <form:form action="save" modelAttribute="hangout" method="GET">
 					  <div class="form-group">
 					    <label for="hangoutTitle">Enter a title</label>
-					    <input type="text" class="form-control" id="hangoutTitle" aria-describedby="emailHelp" placeholder="Enter title">
+					    <form:input path="title" type="text" class="form-control" id="hangoutTitle" aria-describedby="emailHelp" placeholder="Enter title" />
 					  </div>
 					  <div class="form-group">
 					    <label for="hangoutDescription">Description of the hangout</label>
-					    <textarea class="form-control" id="hangoutDescription" placeholder="Im free tonight, wanan let's play something." rows = "3"> </textarea>
+					    <form:textarea path="description" class="form-control" id="hangoutDescription" placeholder="Hey everyone! I'm free tonight, wanna go eat out?" rows = "3" />
 					  </div>
 					  <p> Suggest some activities </p>
 					  <div class="form-group">
@@ -42,7 +44,7 @@
 					    <input type="text" class="form-control" id="suggestion3"  placeholder="Watch a movie">
 					  </div>
 				 	  <button type="submit" class="btn btn-primary">Create</button>
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>
