@@ -21,7 +21,7 @@
 			  Start by creating a poll, add some suggestions, and let the group vote on what to do!
 			  </p>
 			  <p class="lead">
-			    <a class="btn btn-primary btn-lg" href="test/createPoll" role="button">Create a poll</a>
+			    <a class="btn btn-primary btn-lg" href="hangout/showForm" role="button">Create a poll</a>
 			  </p>
 		 </div>
 	</div>
