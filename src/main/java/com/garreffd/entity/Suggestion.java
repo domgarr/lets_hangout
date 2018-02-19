@@ -18,10 +18,13 @@ public class Suggestion {
 	@Column(name="suggestion")
 	private String suggestion;
 	
-	@Column(name="voteCount")
+	@Column(name="vote_count")
 	private int voteCount;
 
-	public Suggestion() {
+	public Suggestion() {}
+	
+	public Suggestion(String suggestion) {
+		this.suggestion = suggestion;
 		voteCount = 0;
 	}
 

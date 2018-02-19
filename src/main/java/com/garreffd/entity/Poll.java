@@ -30,9 +30,18 @@ public class Poll {
 	
 	//If we delete the Poll, we should delete all suggestions associated with it.
 	//FetchType.LAZY means load suggestions upon request of the application
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="poll_id")
 	private List<Suggestion> suggestions;
+
+	
+	
+	public Poll() {
+	}
+
+	public Poll(String title) {
+		this.title = title;
+	}
 
 	public String getTitle() {
 		return title;
@@ -57,5 +66,12 @@ public class Poll {
 		}
 		suggestions.add(suggestion);
 	}
+
+	@Override
+	public String toString() {
+		return "Poll [id=" + id + ", title=" + title + ", suggestions=" + suggestions + "]";
+	}
+	
+	
 	
 }

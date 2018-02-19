@@ -37,17 +37,17 @@
 					  
 					  <div class="form-group">
 					    <label for="hangoutTitle">Enter a title for the poll</label>
-					    <form:input path="title" type="text" class="form-control" id="hangoutTitle" aria-describedby="emailHelp" placeholder="Enter title" />
+					    <input type="text" class="form-control" name="pollTitle" aria-describedby="emailHelp" placeholder="Enter title" />
 					  </div>
 					  <p> Suggest some activities </p>
 					  <div class="form-group">
-					    <input type="text" class="form-control" id="suggestion1"  placeholder="Bowling">
+					    <input type="text" class="form-control" name="suggestion1"  placeholder="Bowling">
 					  </div>
 					  <div class="form-group">
-					    <input type="text" class="form-control" id="suggestion2"  placeholder="Ice Skating">
+					    <input type="text" class="form-control" name="suggestion2"  placeholder="Ice Skating">
 					  </div>
 					  <div class="form-group">
-					    <input type="text" class="form-control" id="suggestion3"  placeholder="Watch a movie">
+					    <input type="text" class="form-control" name="suggestion3"  placeholder="Watch a movie">
 					  </div>
 				 	  <button type="submit" class="btn btn-primary">Create</button>
 				</form:form>

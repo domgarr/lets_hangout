@@ -17,5 +17,10 @@ public class HangoutServiceImpl implements HangoutService<Hangout> {
 	public void save(Hangout entity) {
 		hangoutDao.save(entity);		
 	}
-	
+
+	@Override
+	@Transactional
+	public Hangout get(int id) {
+		return hangoutDao.get(id);
+	}
 }

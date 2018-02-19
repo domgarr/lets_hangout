@@ -29,7 +29,7 @@ public class Hangout {
 	@Column(name="description")
 	private String description;
 	
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="hangout_id")
 	private List<Poll> polls;
 	

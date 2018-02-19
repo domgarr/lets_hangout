@@ -16,4 +16,9 @@ public class HangoutDaoImpl implements Dao<Hangout> {
 		sessionFactory.getCurrentSession().save(entity);
 	}
 
+	@Override
+	public Hangout get(int id) {
+		return sessionFactory.getCurrentSession().get(Hangout.class, id);
+
+	}
 }
