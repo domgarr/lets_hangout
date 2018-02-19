@@ -33,6 +33,12 @@
 					    <label for="hangoutDescription">Description of the hangout</label>
 					    <form:textarea path="description" class="form-control" id="hangoutDescription" placeholder="Hey everyone! I'm free tonight, wanna go eat out?" rows = "3" />
 					  </div>
+					  
+					  
+					  <div class="form-group">
+					    <label for="hangoutTitle">Enter a title for the poll</label>
+					    <form:input path="title" type="text" class="form-control" id="hangoutTitle" aria-describedby="emailHelp" placeholder="Enter title" />
+					  </div>
 					  <p> Suggest some activities </p>
 					  <div class="form-group">
 					    <input type="text" class="form-control" id="suggestion1"  placeholder="Bowling">

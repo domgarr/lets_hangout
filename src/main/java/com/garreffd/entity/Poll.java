@@ -1,5 +1,6 @@
 package com.garreffd.entity;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +15,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name="hangout")
-public class Hangout {
-	
+@Table(name="poll")
+public class Poll {
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
@@ -26,14 +28,11 @@ public class Hangout {
 	@Column(name="title")
 	private String title;
 	
-	@Column(name="description")
-	private String description;
-	
+	//If we delete the Poll, we should delete all suggestions associated with it.
+	//FetchType.LAZY means load suggestions upon request of the application
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinColumn(name="hangout_id")
-	private List<Poll> polls;
-	
-	public Hangout() {}
+	@JoinColumn(name="poll_id")
+	private List<Suggestion> suggestions;
 
 	public String getTitle() {
 		return title;
@@ -43,41 +42,20 @@ public class Hangout {
 		this.title = title;
 	}
 
-	public String getDescription() {
-		return description;
+	public List<Suggestion> getSuggestions() {
+		return suggestions;
 	}
 
-	public void setDescription(String descritpion) {
-		this.description = descritpion;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	
-	
-	public List<Poll> getPolls() {
-		return polls;
-	}
-
-	public void setPolls(List<Poll> polls) {
-		this.polls = polls;
+	public void setSuggestions(List<Suggestion> suggestions) {
+		this.suggestions = suggestions;
 	}
 	
-	public void addPoll(Poll poll) {
-		if(polls == null) {
-			polls = new ArrayList<>();
+	//add a convenience method
+	public void addSuggestions(Suggestion suggestion) {
+		if(suggestions == null) {
+			suggestions = new ArrayList<>();
 		}
-		polls.add(poll);
+		suggestions.add(suggestion);
 	}
-
-	@Override
-	public String toString() {
-		return "Hangout [id=" + id + ", title=" + title + ", descritpion=" + description + "]";
-	}
+	
 }
