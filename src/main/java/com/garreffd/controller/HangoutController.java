@@ -1,16 +1,21 @@
 package com.garreffd.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import entity.Hangout;
+import com.garreffd.entity.Hangout;
+import com.garreffd.service.HangoutService;
 
 @Controller
 @RequestMapping("/hangout")
 public class HangoutController {
+	
+	@Autowired
+	HangoutService<Hangout> hangoutService;
 	
 	@GetMapping("/showForm")
 	public String showHangout(Model model) {
@@ -27,7 +32,8 @@ public class HangoutController {
 	public String saveHangout(@ModelAttribute("hangout") Hangout hangout) {
 		
 		//Save hangout
+		hangoutService.save(hangout);
 		
-		return "redirect:hangout";
+		return "redirect:/";
 	}
 }
