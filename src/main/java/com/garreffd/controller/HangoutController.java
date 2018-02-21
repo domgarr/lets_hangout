@@ -23,7 +23,7 @@ public class HangoutController {
 	HangoutService<Hangout> hangoutService;
 	
 	@GetMapping("/showForm")
-	public String showHangout(Model model) {
+	public String showForm(Model model) {
 		//Need to bind model attribute, this will be Hangout.java
 		Hangout hangout = new Hangout();
 		
@@ -59,7 +59,15 @@ public class HangoutController {
 	}
 	
 	@GetMapping("/showHangout")
-	public String showHangout() {
+	public String showHangout(Model model) {
+		//get hang outfrom database
+		Hangout hangout = hangoutService.get(12);
+		
+		//set hang out as a model attribute
+		model.addAttribute("hangout", hangout);
+		//send over to page
+		model.addAttribute("poll", hangout.getPoll(0));
+		
 		return "view-hangout";
 	}
 }

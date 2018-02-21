@@ -58,8 +58,6 @@ public class Hangout {
 	public int getId() {
 		return id;
 	}
-
-	
 	
 	public List<Poll> getPolls() {
 		return polls;
@@ -74,6 +72,13 @@ public class Hangout {
 			polls = new ArrayList<>();
 		}
 		polls.add(poll);
+	}
+	
+	public Poll getPoll(int index) {
+		if(!polls.isEmpty()) {
+			return polls.get(index);
+		}
+		return null;
 	}
 
 	@Override

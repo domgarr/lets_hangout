@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -28,47 +30,40 @@
 				<h1 class="display-4">Let's Hangout</h1>
 				<p class="lead">Inspired by my group of indecisive friends</p>
 				<hr class="my-4">
-				<h3> Let's eat out? </h3>
-				<p>Hey everyone. I'm free tonight, you guys want to go eat out somewhere?</p>
+				<h3> ${ hangout.title }</h3>
+				<p> ${hangout.description}  </p>
 				<hr class="my-4">
 				
 				<div class="row">
 					<div class="col-sm-12 col-lg-6">
 						
-						<p> Where do you guys wanna eat? </p>
+						<p>${poll.title} </p>
 						
 						<div class="form-check">
 						  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
 						  <label class="form-check-label" for="exampleRadios1">
-						    Caboto Pizza
+						     ${poll.get(0).suggestion }
 						  </label>
 						</div>
 						
 						<div class="form-check">
 						  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
 						  <label class="form-check-label" for="exampleRadios2">
-						    Dragons Inn
+						    ${poll.get(1).suggestion }
 						  </label>
 						</div>
 						
 						<div class="form-check">
 						  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" >
 						  <label class="form-check-label" for="exampleRadios3">
-						    California Sushi
+						    ${poll.get(2).suggestion }
 						  </label>
 						</div>
-						
-						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" >
-						  <label class="form-check-label" for="exampleRadios3">
-						    Pho-Xic-Lo
-						  </label>
-						</div>
-						
+						<br>					
 						<button type="submit" class="btn btn-primary">Vote</button>
 						
 					</div>
-					
+					<br>
 					<div class="col-sm-12 col-lg-6">
 						<div id="canvas-holder" style="width:100%">
 							<canvas id="myChart"></canvas>
@@ -77,23 +72,22 @@
 				</div>	
 	  		</div>
 	  	</div>
-	  	
-	  	<script>
+
+<script>
 var data = {
     datasets: [{
-        data: [3, 2, 1,1],
-	backgroundColor: [   'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)', 'rgba(54, 255, 86, 0.2)']
+        data: ["${poll.get(0).voteCount}", "${poll.get(1).voteCount}", "${poll.get(2).voteCount}"],
+	backgroundColor: [   'rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)']
 	
     
 }],
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: [
-        'Caboto Pizza',
-        'Dragons Inn',
-        'California Sushi',
-        'Pho-Xic-Lo'
-    ],
+        ' ${poll.get(0).suggestion }',
+        ' ${poll.get(1).suggestion }',
+        ' ${poll.get(2).suggestion }'
+    ]
     };
 
 
@@ -108,9 +102,6 @@ var chart = new Chart(ctx, {
     // Configuration options go here
     options: {}
 });
-
-
-
 </script>
 
     <!-- Optional JavaScript -->

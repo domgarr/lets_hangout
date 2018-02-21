@@ -66,6 +66,13 @@ public class Poll {
 		}
 		suggestions.add(suggestion);
 	}
+	
+	public Suggestion get(int index) {
+		if(!suggestions.isEmpty()) {
+			return suggestions.get(index);
+		}
+		return null;
+	}
 
 	@Override
 	public String toString() {

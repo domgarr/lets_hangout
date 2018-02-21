@@ -35,6 +35,14 @@ public class Suggestion {
 	public void setSuggestion(String suggestion) {
 		this.suggestion = suggestion;
 	}
+	
+	public int getVoteCount() {
+		return voteCount;
+	}
+
+	public void setVoteCount(int voteCount) {
+		this.voteCount = voteCount;
+	}
 
 	@Override
 	public String toString() {
