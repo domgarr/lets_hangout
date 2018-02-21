@@ -20,6 +20,23 @@
 			-webkit-user-select: none;
 			-ms-user-select: none;
 		}
+		
+		td:hover {background-color: green; }
+		td {background-color: red;}
+		.turnGreen {background-color: green; }
+		
+		.jumbotron {
+			background-color: #FFFFFF;
+		}
+		
+		#header {background-color: #03A9F4;
+				 color: #FFFFFF;
+				}
+		
+		.titleSubText {
+			color: #B3E5FC;
+			margin-left: 10px;
+		}
   </style>
   
   </head>
@@ -28,11 +45,14 @@
 	  	<div class="jumbotron">
 	  		<div id="header">
 				<h1 class="display-4">Let's Hangout</h1>
-				<p class="lead">Inspired by my group of indecisive friends</p>
+				<p class="lead titleSubText">Inspired by my group of indecisive friends</p>
+			</div>
+			
 				<hr class="my-4">
 				<h3> ${ hangout.title }</h3>
 				<p> ${hangout.description}  </p>
 				<hr class="my-4">
+			
 				
 				<div class="row">
 					<div class="col-sm-12 col-lg-6">
@@ -69,9 +89,60 @@
 							<canvas id="myChart"></canvas>
 						</div>
 					</div>
-				</div>	
-	  		</div>
+				</div>
+	  	
+	  	<br/>
+	  	<div>
+			<table class="table table-bordered">
+			  <thead>
+			    <tr>
+			      <th scope="col"></th>
+			      <th scope="col">M</th>
+			      <th scope="col">T</th>
+			      <th scope="col">W</th>
+			      <th scope="col">R</th>
+			      <th scope="col">F</th>
+			      <th scope="col">S</th>
+			      <th scope="col">U</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <th scope="row">8am</th>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">9am</th>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">10am</th>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			      <td onclick="turnGreen(this)" ></td>
+			    </tr>
+			  </tbody>
+			</table>
 	  	</div>
+	  </div>
+	 </div>
+	  
 
 <script>
 var data = {
@@ -102,6 +173,10 @@ var chart = new Chart(ctx, {
     // Configuration options go here
     options: {}
 });
+
+function turnGreen(cell){
+	cell.className += "turnGreen";
+}
 </script>
 
     <!-- Optional JavaScript -->
