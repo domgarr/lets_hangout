@@ -57,4 +57,9 @@ public class HangoutController {
 		
 		return "redirect:/";
 	}
+	
+	@GetMapping("/showHangout")
+	public String showHangout() {
+		return "view-hangout";
+	}
 }
