@@ -17,4 +17,9 @@ public class TestController {
 	public String createPoll() {
 		return "create-poll-form";
 	}
+
+	@GetMapping("showLogin")
+	public String showLogin() {
+		return "login";
+	}
 }
