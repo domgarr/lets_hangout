@@ -59,8 +59,13 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>5.0.3.RELEASE</version>
+      <version>5.0.2.RELEASE</version>
   </dependency>
+  <dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-web</artifactId>
+    <version>5.0.0.RELEASE</version>
+	</dependency>
   <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-tx</artifactId>
@@ -76,6 +81,17 @@
     <artifactId>spring-orm</artifactId>
     <version>5.0.3.RELEASE</version>
 </dependency>
+<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>5.0.0.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>5.0.0.RELEASE</version>
+		</dependency>
   </dependencies>
   
   <build>
