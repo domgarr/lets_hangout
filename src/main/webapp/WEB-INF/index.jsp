@@ -1,3 +1,6 @@
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -21,8 +24,17 @@
 			  Start by creating a poll, add some suggestions, and let the group vote on what to do!
 			  </p>
 			  <p class="lead">
-			    <a class="btn btn-primary btn-lg" href="hangout/showForm" role="button">Create a poll</a>
+			    <a class="btn btn-primary btn-lg" href="showForm" role="button">Create a poll</a>
 			  </p>
+			  
+			  <security:authentication property="principal.username" />
+			  <security:authentication property="principal.authorities" />
+			
+			
+			<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+				<input type="submit" value="Logout" >
+			</form:form>
+	
 		 </div>
 	</div>
 

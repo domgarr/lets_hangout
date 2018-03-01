@@ -33,7 +33,7 @@ public class AppConfig {
 	@Autowired
 	private Environment env;
 	//define a bean for the ViewResolver - The view resolver will aid in mapping the .jsp pages returned from the controller
-
+	
 	@Bean
 	public ViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();

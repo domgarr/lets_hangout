@@ -1,3 +1,8 @@
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,15 +24,22 @@
 			  
 			  <p> Don't have an account? <a href ="" > Create one here. </a> </p>
 			  
-			  <form:form >
+			
+			<security:authorize access="hasAuthority('INVITEE')">
+				<p> INVITEE LOGGED IN </p>
+				
+			</security:authorize>
+			  
+			  <form:form action="${pageContext.request.contextPath}/authenticate" method="POST" >
+			  
 			  <label for="usernameTextbox">Username</label>
-			  	<input type="text" class="form-control" id="usernameTextbox" placeholder="enter username">
+			  	<input type="text" class="form-control" name="username" id="usernameTextbox" placeholder="enter username">
 			  
 			  <label for="usernamePassword">Password</label>
-			  	<input type="password" class="form-control" id="usernamePassword">
+			  	<input type="password" class="form-control" name="password" id="usernamePassword">
 			 
 			 <br>
-			 <button type = "submit" class="btn btn-primary"> Login </button>
+			 <button type = "submit" name="login" class="btn btn-primary"> Login </button>
 			  
 			  </form:form>
 			  

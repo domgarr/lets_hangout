@@ -55,12 +55,13 @@ public class HangoutController {
 		//Save hangout
 		hangoutService.save(hangout);
 		
+		//TODO: Redirect to newly created hangout
 		return "redirect:/";
 	}
 	
 	@GetMapping("/showHangout")
 	public String showHangout(Model model) {
-		//get hang outfrom database
+		//get hangout from database
 		Hangout hangout = hangoutService.get(12);
 		
 		//set hang out as a model attribute
@@ -68,6 +69,11 @@ public class HangoutController {
 		//send over to page
 		model.addAttribute("poll", hangout.getPoll(0));
 		
-		return "view-hangout";
+		return "/view-hangout";
+	}
+	
+	@GetMapping("/")
+	public String showHome() {
+		return "index";
 	}
 }

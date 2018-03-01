@@ -21,5 +21,7 @@ public class SpringMvcDispatcherServletConfig extends AbstractAnnotationConfigDi
 		// TODO Auto-generated method stub
 		return new String[]{"/"};
 	}
+	
+	
 
 }
