@@ -1,10 +1,14 @@
 package com.garreffd.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.garreffd.entity.Hangout;
 import com.garreffd.entity.HangoutUser;
 
 @Repository
@@ -23,5 +27,6 @@ public class HangoutUserDao implements Dao<HangoutUser> {
 	public HangoutUser get(int id) {
 		return null;
 	}
+	
 
 }

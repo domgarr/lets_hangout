@@ -12,10 +12,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/*
+ *  Single Id classes do not need to be Serializable since 
+ *  primitive types are Serializable by default.
+ */
+
 @Entity
 @Table(name="hangout_user")
 public class HangoutUser implements Serializable  {
 	
+	/*
+	 *  Since I do not plan to change the class in the future, a
+	 *  default UID will do.
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name="hangout_id")
 	private int hangout_id;
