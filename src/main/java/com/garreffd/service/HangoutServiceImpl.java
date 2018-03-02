@@ -8,7 +8,7 @@ import com.garreffd.dao.Dao;
 import com.garreffd.entity.Hangout;
 
 @Service
-public class HangoutServiceImpl implements HangoutService<Hangout> {
+public class HangoutServiceImpl implements ServiceInterface<Hangout> {
 	@Autowired
 	Dao<Hangout> hangoutDao;
 	
