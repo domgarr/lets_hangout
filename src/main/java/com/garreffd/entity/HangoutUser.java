@@ -29,33 +29,38 @@ public class HangoutUser implements Serializable  {
 
 	@Id
 	@Column(name="hangout_id")
-	private int hangout_id;
+	private int hangoutId;
 	
 	@Id
 	@Column(name="user_id")
-	private String user_id;
-
-	
-	public int getHangout_id() {
-		return hangout_id;
-	}
-
-	public void setHangout_id(int hangout_id) {
-		this.hangout_id = hangout_id;
-	}
-
-	public String getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
+	private String userId;
 
 	public HangoutUser(int hangout_id, String user_id) {
-		this.hangout_id = hangout_id;
-		this.user_id = user_id;
+		this.hangoutId = hangout_id;
+		this.userId = user_id;
 	}
+
+	public HangoutUser() {
+	}
+	
+	public int getHangoutId() {
+		return hangoutId;
+	}
+
+	public void setHangoutId(int hangout_id) {
+		this.hangoutId = hangout_id;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String user_id) {
+		this.userId = user_id;
+	}
+
+	
+	
 
 	
 }

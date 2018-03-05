@@ -1,5 +1,7 @@
 package com.garreffd.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,12 @@ public class HangoutUserService implements ServiceInterface<HangoutUser> {
 
 	@Override
 	public HangoutUser get(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<HangoutUser> getAll(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

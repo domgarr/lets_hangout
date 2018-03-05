@@ -19,12 +19,17 @@ public class HangoutUserDao implements Dao<HangoutUser> {
 	
 	@Override
 	public void save(HangoutUser entity) {
-		System.out.println("Dao doing work work.");
 		sessionFactory.getCurrentSession().save(entity);
 	}
 
 	@Override
 	public HangoutUser get(int id) {
+		return null;
+	}
+
+	@Override
+	public List<HangoutUser> getAll(String id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

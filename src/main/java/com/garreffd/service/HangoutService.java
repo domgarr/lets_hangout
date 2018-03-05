@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.garreffd.dao.Dao;
+import com.garreffd.dao.HangoutDao;
 import com.garreffd.entity.Hangout;
 
 @Service
@@ -27,9 +28,10 @@ public class HangoutService implements ServiceInterface<Hangout> {
 	}
 	
 	//This will not be in the interface, since I don't believe all entities need this behavior. 
+	@Override
 	@Transactional
-	public List<Hangout> getHangouts(String username){
-		return ((HangoutService)hangoutDao).getHangouts(username);
+	public List<Hangout> getAll(String username){
+		return hangoutDao.getAll(username);
 	}
 	
 }

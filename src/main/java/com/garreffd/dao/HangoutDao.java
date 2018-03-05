@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.garreffd.entity.Hangout;
+import com.garreffd.entity.HangoutUser;
 
 @Repository
 public class HangoutDao implements Dao<Hangout> {
@@ -23,16 +24,14 @@ public class HangoutDao implements Dao<Hangout> {
 	@Override
 	public Hangout get(int id) {
 		return sessionFactory.getCurrentSession().get(Hangout.class, id);
-
 	}
-	
-	public List<Hangout> getHangouts(String username){
+
+	@Override
+	public List<Hangout> getAll(String id) {
+		String hql = "from Hangout where id in ( select hangoutUser.hangoutId from HangoutUser as hangoutUser  where userId = 'domenic' )";
+			 
 		Session session = sessionFactory.getCurrentSession();
-		Query<Hangout> query = session.createQuery(
-				"SELECT hangout.id, hangout.title, hangout.description "
-				+"FROM hangout, hangout_user\r\n" + 
-				"where hangout.id = hangout_user.hangout_id" 
-				, Hangout.class);
+		Query<Hangout> query = session.createQuery(hql, Hangout.class);
 		
 		return query.getResultList();
 	}

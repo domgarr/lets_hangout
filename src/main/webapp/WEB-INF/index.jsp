@@ -1,5 +1,6 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!doctype html>
 <html lang="en">
@@ -7,6 +8,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!--  
+How to reference a CSS stylesheet. 
+<link type="text/css"
+		  rel="stylesheet"
+		  href="${pageContext.request.contextPath}/resources/css/style.css" />
+
+ -->
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -35,22 +44,26 @@
 			  <security:authentication property="principal.username" />
 			  <security:authentication property="principal.authorities" />
 			
-			
-			<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-				<input type="submit" value="Logout" >
-			</form:form>
-			
-			<div id="root">
-			
+			<div class="row">
+				<c:forEach var="hangout" items="${hangouts}">
+					<div class = "col-lg-4">
+						<div class="card" style="width: 18rem;">
+						  <div class="card-body">
+						    <h5 class="card-title">${hangout.title}</h5>
+						    <p class="card-text"> ${hangout.description}</p>
+						    <a href="#" class="card-link">Continue</a>
+						    <a href="#" class="card-link">Edit</a>
+						  </div>
+						</div>
+					</div>
+				</c:forEach>
+				
+				
 			</div>
 			
-			<script type="text/babel">
-  			ReactDOM.render(
-  				<h1> Hello World! </h1>,
-  				document.getElementById("root")
-  				);
-  			</script>
-	
+				<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+					<input type="submit" value="Logout" >
+				</form:form>
 		 </div>
 	</div>
 

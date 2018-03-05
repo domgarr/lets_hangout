@@ -1,5 +1,7 @@
 package com.garreffd.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import com.garreffd.entity.Hangout;
 import com.garreffd.entity.HangoutUser;
 import com.garreffd.entity.Poll;
 import com.garreffd.entity.Suggestion;
+import com.garreffd.service.HangoutService;
 import com.garreffd.service.ServiceInterface;
 
 @Controller
@@ -30,15 +33,8 @@ public class HangoutController {
 	
 	@GetMapping("/showForm")
 	public String showForm(Model model) {
-		//Need to bind model attribute, this will be Hangout.java
 		Hangout hangout = new Hangout();
-		
 		model.addAttribute("hangout", hangout);
-		
-		Hangout hangoutTest = hangoutService.get(10);
-		System.out.println(hangoutTest);
-		System.out.println(hangoutTest.getPolls());
-		
 		return "form-create-hangout"; 
 	}
 	
@@ -46,7 +42,7 @@ public class HangoutController {
 	@GetMapping("/save")
 	public String saveHangout(@ModelAttribute("hangout") Hangout hangout, @RequestParam Map<String, String> params) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		
+
 		String s1 = params.get("suggestion1");
 		String s2 = params.get("suggestion2");
 		String s3 = params.get("suggestion3");
@@ -87,7 +83,15 @@ public class HangoutController {
 	}
 	
 	@GetMapping("/")
-	public String showHome() {
+	public String showHome(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		
+		//Get a list of hangouts associated with the user.
+		hangoutService.getAll(username);
+		ArrayList<Hangout> hangouts = (ArrayList<Hangout>)hangoutService.getAll(username);			
+		model.addAttribute("hangouts", hangouts);
+	
 		return "index";
 	}
 }
