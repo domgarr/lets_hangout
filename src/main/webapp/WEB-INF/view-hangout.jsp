@@ -92,6 +92,13 @@
 				</div>
 	  	
 	  	<br/>
+	  	
+	  	<a href="./" class="btn btn-secondary" type="button" >Back</a>
+	  	
+	    <!--  An idea I had for choosing a time slot for the hangout
+	  	Everyone enters when they're available, and the time slots where
+	  	everyone is available is shown and can be voted on.
+	   
 	  	<div>
 			<table class="table table-bordered">
 			  <thead>
@@ -142,6 +149,7 @@
 	  	</div>
 	  </div>
 	 </div>
+	 -->
 	  
 
 <script>

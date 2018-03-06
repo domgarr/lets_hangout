@@ -70,9 +70,10 @@ public class HangoutController {
 	}
 	
 	@GetMapping("/showHangout")
-	public String showHangout(Model model) {
+	public String showHangout(@RequestParam("hangoutId") int hangoutId,
+			Model model) {
 		//get hangout from database
-		Hangout hangout = hangoutService.get(12);
+		Hangout hangout = hangoutService.get(hangoutId);
 		
 		//set hang out as a model attribute
 		model.addAttribute("hangout", hangout);

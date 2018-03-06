@@ -46,12 +46,18 @@ How to reference a CSS stylesheet.
 			
 			<div class="row">
 				<c:forEach var="hangout" items="${hangouts}">
+				
+				<!-- construct an "update" link with customer id -->
+					<c:url var="viewHangoutLink" value="/hangout/showHangout">
+						<c:param name="hangoutId" value="${hangout.id}" />
+					</c:url>
+				
 					<div class = "col-lg-4">
 						<div class="card" style="width: 18rem;">
 						  <div class="card-body">
 						    <h5 class="card-title">${hangout.title}</h5>
 						    <p class="card-text"> ${hangout.description}</p>
-						    <a href="#" class="card-link">Continue</a>
+						    <a href="${viewHangoutLink}" class="card-link">View</a>
 						    <a href="#" class="card-link">Edit</a>
 						  </div>
 						</div>
