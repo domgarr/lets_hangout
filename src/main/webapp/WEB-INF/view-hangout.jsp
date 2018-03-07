@@ -185,6 +185,10 @@ var chart = new Chart(ctx, {
 function turnGreen(cell){
 	cell.className += "turnGreen";
 }
+
+function vote(){
+	
+}
 </script>
 
     <!-- Optional JavaScript -->

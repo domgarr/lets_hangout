@@ -39,6 +39,10 @@ public class Poll {
 	public Poll() {
 	}
 
+	public int getId() {
+		return id;
+	}
+
 	public Poll(String title) {
 		this.title = title;
 	}
@@ -78,7 +82,4 @@ public class Poll {
 	public String toString() {
 		return "Poll [id=" + id + ", title=" + title + ", suggestions=" + suggestions + "]";
 	}
-	
-	
-	
 }

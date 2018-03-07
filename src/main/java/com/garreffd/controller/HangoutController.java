@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.garreffd.entity.Hangout;
 import com.garreffd.entity.HangoutUser;
 import com.garreffd.entity.Poll;
+import com.garreffd.entity.PollData;
 import com.garreffd.entity.Suggestion;
 import com.garreffd.service.HangoutService;
+import com.garreffd.service.PollDataService;
 import com.garreffd.service.ServiceInterface;
 
 @Controller
@@ -29,7 +31,8 @@ public class HangoutController {
 	ServiceInterface<Hangout> hangoutService;
 	@Autowired
 	ServiceInterface<HangoutUser> hangoutUserService;
-	
+	@Autowired
+	ServiceInterface<PollData> pollDataService;
 	
 	@GetMapping("/showForm")
 	public String showForm(Model model) {
@@ -59,11 +62,14 @@ public class HangoutController {
 		//Save hangout
 		hangoutService.save(hangout);
 		
-		HangoutUser hangoutUser = new HangoutUser(hangout.getId(), authentication.getName());
-		
-		System.out.println(hangoutUser.toString());
+		HangoutUser hangoutUser = new HangoutUser(hangout.getId(), authentication.getName());	
 		hangoutUserService.save(hangoutUser);
 		
+		//When saving a new poll, adding information pertaining to whether
+		//the owner/invitee have voted on that poll.
+		PollData pollData = new PollData(poll.getId(), authentication.getName(), (byte)0);
+		
+		pollDataService.save(pollData);
 		
 		//TODO: Redirect to newly created hangout
 		return "redirect:/";
