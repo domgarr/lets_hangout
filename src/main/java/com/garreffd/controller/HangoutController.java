@@ -78,13 +78,20 @@ public class HangoutController {
 	@GetMapping("/showHangout")
 	public String showHangout(@RequestParam("hangoutId") int hangoutId,
 			Model model) {
+		//Get user
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
 		//get hangout from database
 		Hangout hangout = hangoutService.get(hangoutId);
+	
+		
 		
 		//set hang out as a model attribute
 		model.addAttribute("hangout", hangout);
 		//send over to page
 		model.addAttribute("poll", hangout.getPoll(0));
+		
+		model.addAttribute("pollData", 	pollDataService.getAll(authentication.getName()));
 		
 		return "/view-hangout";
 	}

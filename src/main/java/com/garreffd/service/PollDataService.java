@@ -30,9 +30,8 @@ public class PollDataService implements ServiceInterface<PollData> {
 	}
 
 	@Override
-	public List<PollData> getAll(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PollData> getAll(String usernameId) {
+		return pollDataDao.getAll(usernameId);
 	}
 	
 	

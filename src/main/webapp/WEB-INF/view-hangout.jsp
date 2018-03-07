@@ -59,6 +59,8 @@
 						
 						<p>${poll.title} </p>
 						
+						
+					<c:if test="${pollData.get(0).voted == 0 }">
 						<div class="form-check">
 						  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
 						  <label class="form-check-label" for="exampleRadios1">
@@ -81,6 +83,7 @@
 						</div>
 						<br>					
 						<button type="submit" class="btn btn-primary">Vote</button>
+					</c:if>
 						
 					</div>
 					<br>
@@ -147,9 +150,10 @@
 			  </tbody>
 			</table>
 	  	</div>
+	 -->
 	  </div>
 	 </div>
-	 -->
+	
 	  
 
 <script>
