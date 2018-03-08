@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!doctype html>
 <html lang="en">
@@ -13,6 +14,12 @@
     <title>Hangout</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
+	
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	
   <style>
 		canvas {
@@ -49,49 +56,43 @@
 			</div>
 			
 				<hr class="my-4">
-				<h3> ${ hangout.title }</h3>
+				<h3> ${hangout.title}</h3>
 				<p> ${hangout.description}  </p>
 				<hr class="my-4">
 			
 				
 				<div class="row">
-					<div class="col-sm-12 col-lg-6">
+				<div class="col-sm-12 col-lg-6">
+					<p>${poll.title} </p>
 						
-						<p>${poll.title} </p>
-						
-						
-					<c:if test="${pollData.get(0).voted == 0 }">
-						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-						  <label class="form-check-label" for="exampleRadios1">
-						     ${poll.get(0).suggestion }
-						  </label>
-						</div>
-						
-						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-						  <label class="form-check-label" for="exampleRadios2">
-						    ${poll.get(1).suggestion }
-						  </label>
-						</div>
-						
-						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" >
-						  <label class="form-check-label" for="exampleRadios3">
-						    ${poll.get(2).suggestion }
-						  </label>
-						</div>
-						<br>					
-						<button type="submit" class="btn btn-primary">Vote</button>
-					</c:if>
-						
-					</div>
-					<br>
+				
+				
 					<div class="col-sm-12 col-lg-6">
 						<div id="canvas-holder" style="width:100%">
 							<canvas id="myChart"></canvas>
 						</div>
 					</div>
+				<br>		
+				<c:if test="${pollData.get(0).voted == 0 }">
+				<form:form modelAttribute="pollVote" action="${pageContext.request.contextPath}/hangout/updatePoll" method="post">
+
+				<!--  https://stackoverflow.com/questions/6099066/how-to-loop-over-something-a-specified-number-of-times-in-jstl -->
+				<c:forEach begin="0" end="${poll.suggestions.size() - 1}" varStatus="loop">
+						<div class="form-check">
+						  <form:radiobutton class="form-check-input" path="suggestionId" value="${poll.get(loop.index).id }" name="idk" /> 
+						  <label class="form-check-label" for="suggestion1">
+						     ${poll.get(loop.index).suggestion }
+						  </label>
+						</div>
+				</c:forEach>
+						
+						<br>			
+						<button type="submit" class="btn btn-primary">Vote</button>
+					</form:form>
+					</c:if>
+						
+					</div>
+					
 				</div>
 	  	
 	  	<br/>
@@ -177,7 +178,7 @@ var data = {
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
     // The type of chart we want to create
-    type: 'polarArea',
+    type: 'pie',
 
     // The data for our dataset
     data,
@@ -190,15 +191,8 @@ function turnGreen(cell){
 	cell.className += "turnGreen";
 }
 
-function vote(){
-	
-}
 </script>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
   </body>
 </html>

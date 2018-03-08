@@ -27,6 +27,11 @@ public class Suggestion {
 		this.suggestion = suggestion;
 		voteCount = 0;
 	}
+	
+
+	public int getId() {
+		return id;
+	}
 
 	public String getSuggestion() {
 		return suggestion;
@@ -42,6 +47,11 @@ public class Suggestion {
 
 	public void setVoteCount(int voteCount) {
 		this.voteCount = voteCount;
+	
+	}
+	
+	public void incrementVoteCount() {
+		voteCount++;
 	}
 
 	@Override

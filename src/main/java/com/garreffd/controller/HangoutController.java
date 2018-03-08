@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,6 +19,7 @@ import com.garreffd.entity.Hangout;
 import com.garreffd.entity.HangoutUser;
 import com.garreffd.entity.Poll;
 import com.garreffd.entity.PollData;
+import com.garreffd.entity.PollVote;
 import com.garreffd.entity.Suggestion;
 import com.garreffd.service.HangoutService;
 import com.garreffd.service.PollDataService;
@@ -33,6 +35,8 @@ public class HangoutController {
 	ServiceInterface<HangoutUser> hangoutUserService;
 	@Autowired
 	ServiceInterface<PollData> pollDataService;
+	@Autowired 
+	ServiceInterface<Suggestion> suggestionService;
 	
 	@GetMapping("/showForm")
 	public String showForm(Model model) {
@@ -93,6 +97,8 @@ public class HangoutController {
 		
 		model.addAttribute("pollData", 	pollDataService.getAll(authentication.getName()));
 		
+		model.addAttribute("pollVote", new PollVote());
+		
 		return "/view-hangout";
 	}
 	
@@ -105,7 +111,17 @@ public class HangoutController {
 		hangoutService.getAll(username);
 		ArrayList<Hangout> hangouts = (ArrayList<Hangout>)hangoutService.getAll(username);			
 		model.addAttribute("hangouts", hangouts);
-	
+
 		return "index";
+	}
+	
+	@PostMapping("/updatePoll")
+	public String updatePoll( @ModelAttribute ("formData") PollVote data ) {
+		Suggestion suggestion = suggestionService.get(data.getSuggestionId());
+		suggestion.incrementVoteCount();
+		suggestionService.save(suggestion);
+		System.out.println("DONEEEE");
+		
+		return ":/redirect/showHangout";
 	}
 }
