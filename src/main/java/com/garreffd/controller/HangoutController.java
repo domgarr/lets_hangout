@@ -130,4 +130,12 @@ public class HangoutController {
 		//Return back to hangout by using the hangoutId parameter passed by a hidden input
 		return "redirect:/hangout/showHangout?hangoutId=" + hangoutId;
 	}
+	
+	@PostMapping("/addUser")
+	public String addUser(@ModelAttribute("hangoutUser") HangoutUser hangoutUser) {
+		System.out.println(hangoutUser.getHangoutId());
+		System.out.println(hangoutUser.getUserId());
+		hangoutUserService.save(hangoutUser);
+		return "redirect:/hangout/showHangout?hangoutId=" + hangoutUser.getHangoutId(); 
+	}
 }

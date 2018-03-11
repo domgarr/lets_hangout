@@ -58,7 +58,7 @@
 			<!--  View to invite users to hangout -->
 				<form:form modelAttribute="hangoutUser" action="${pageContext.request.contextPath}/hangout/addUser" method="post">
 					<!--  Add hidden tag to set hangoutId for the model attribute -->
-					<form:hidden path="hangoutId" value="${hangoutId}" />
+					<form:hidden path="hangoutId" value="${hangout.id}" />
 					
 					<div class="input-group input-group-sm mb-3">
 					 	<div class="input-group-prepend">
@@ -66,7 +66,7 @@
 					  	</div>
 					  <form:input path="userId" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
 						<div class="input-group-append">
-			    			<button class="btn btn-outline-secondary" type="button"> + </button>
+			    			<button class="btn btn-outline-secondary" type="submit"> + </button>
 			 			</div>
 					</div>
 				</form:form>
