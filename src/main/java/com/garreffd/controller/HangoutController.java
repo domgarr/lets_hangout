@@ -131,10 +131,13 @@ public class HangoutController {
 		return "redirect:/hangout/showHangout?hangoutId=" + hangoutId;
 	}
 	
+	/* 
+	 * Save a HangoutUser entity to the database so that the invite user
+	 * is now associated with the hangout.
+	 */
 	@PostMapping("/addUser")
 	public String addUser(@ModelAttribute("hangoutUser") HangoutUser hangoutUser) {
-		System.out.println(hangoutUser.getHangoutId());
-		System.out.println(hangoutUser.getUserId());
+		
 		hangoutUserService.save(hangoutUser);
 		return "redirect:/hangout/showHangout?hangoutId=" + hangoutUser.getHangoutId(); 
 	}

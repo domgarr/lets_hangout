@@ -33,17 +33,14 @@ How to reference a CSS stylesheet.
 			  <h1 class="display-4">Let's Hangout</h1>
 			  <p class="lead">Inspired by my group of indecisive friends</p>
 			  <hr class="my-4">
-			  <p>Lets fix that!</p>
-			  <p>
-			  Start by creating a poll, add some suggestions, and let the group vote on what to do!
+			 
+			  <p class="lead">
+			   	Hello <strong><security:authentication property="principal.username" /></strong>, start by creating a hangout, add a poll and let the group vote on what to do!
 			  </p>
 			  <p class="lead">
-			    <a class="btn btn-primary btn-lg" href="showForm" role="button">Create a poll</a>
+			    <a class="btn btn-primary btn-lg" href="showForm" role="button">Create a hangout</a>
 			  </p>
 			  
-			  <security:authentication property="principal.username" />
-			  <security:authentication property="principal.authorities" />
-			
 			<div class="row">
 				<c:forEach var="hangout" items="${hangouts}">
 				
@@ -52,7 +49,7 @@ How to reference a CSS stylesheet.
 						<c:param name="hangoutId" value="${hangout.id}" />
 					</c:url>
 				
-					<div class = "col-lg-4">
+					<div class = "col-sm-12 col-md-6 col-lg-4">
 						<div class="card" style="width: 18rem;">
 						  <div class="card-body">
 						    <h5 class="card-title">${hangout.title}</h5>
