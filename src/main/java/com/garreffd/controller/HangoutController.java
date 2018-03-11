@@ -69,6 +69,7 @@ public class HangoutController {
 		HangoutUser hangoutUser = new HangoutUser(hangout.getId(), authentication.getName());	
 		hangoutUserService.save(hangoutUser);
 		
+		//TODO: remember to remove
 		hangoutUserService.save(new HangoutUser(hangout.getId(), "travis"));
 		
 		//When saving a new poll, adding information pertaining to whether
@@ -100,6 +101,7 @@ public class HangoutController {
 		model.addAttribute("pollData", 	pollDataService.getAll(authentication.getName()));
 		
 		model.addAttribute("pollVote", new PollVote());
+		model.addAttribute("hangoutUser", new HangoutUser());
 		
 		return "/view-hangout";
 	}

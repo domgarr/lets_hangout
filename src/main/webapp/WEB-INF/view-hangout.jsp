@@ -55,6 +55,23 @@
 				<p class="lead titleSubText">Inspired by my group of indecisive friends</p>
 			</div>
 			
+			<!--  View to invite users to hangout -->
+				<form:form modelAttribute="hangoutUser" action="${pageContext.request.contextPath}/hangout/addUser" method="post">
+					<!--  Add hidden tag to set hangoutId for the model attribute -->
+					<form:hidden path="hangoutId" value="${hangoutId}" />
+					
+					<div class="input-group input-group-sm mb-3">
+					 	<div class="input-group-prepend">
+					    <span class="input-group-text" id="inputGroup-sizing-sm">invite</span>
+					  	</div>
+					  <form:input path="userId" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
+						<div class="input-group-append">
+			    			<button class="btn btn-outline-secondary" type="button"> + </button>
+			 			</div>
+					</div>
+				</form:form>
+				
+			
 				<hr class="my-4">
 				<h3> ${hangout.title}</h3>
 				<p> ${hangout.description}  </p>
