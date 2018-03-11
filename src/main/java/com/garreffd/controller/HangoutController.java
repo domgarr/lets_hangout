@@ -116,12 +116,12 @@ public class HangoutController {
 	}
 	
 	@PostMapping("/updatePoll")
-	public String updatePoll( @ModelAttribute ("formData") PollVote data ) {
+	public String updatePoll( @ModelAttribute ("formData") PollVote data , @RequestParam(value="hangoutId") int hangoutId) {
 		Suggestion suggestion = suggestionService.get(data.getSuggestionId());
 		suggestion.incrementVoteCount();
 		suggestionService.save(suggestion);
 		System.out.println("DONEEEE");
-		
-		return ":/redirect/showHangout";
+		// showHangout?hangoutId=" + hangoutId
+		return "redirect:/hangout/showHangout?hangoutId=" + hangoutId;
 	}
 }

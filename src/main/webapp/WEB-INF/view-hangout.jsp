@@ -75,7 +75,7 @@
 				<br>		
 				<c:if test="${pollData.get(0).voted == 0 }">
 				<form:form modelAttribute="pollVote" action="${pageContext.request.contextPath}/hangout/updatePoll" method="post">
-
+				<input type="hidden" name="hangoutId" value="${hangout.id}">
 				<!--  https://stackoverflow.com/questions/6099066/how-to-loop-over-something-a-specified-number-of-times-in-jstl -->
 				<c:forEach begin="0" end="${poll.suggestions.size() - 1}" varStatus="loop">
 						<div class="form-check">
