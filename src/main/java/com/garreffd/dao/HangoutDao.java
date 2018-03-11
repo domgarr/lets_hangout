@@ -28,7 +28,7 @@ public class HangoutDao implements Dao<Hangout> {
 
 	@Override
 	public List<Hangout> getAll(String id) {
-		String hql = "from Hangout where id in ( select hangoutUser.hangoutId from HangoutUser as hangoutUser  where userId = 'domenic' )";
+		String hql = "from Hangout where id in ( select hangoutUser.hangoutId from HangoutUser as hangoutUser  where userId = '" + id + "' )";
 			 
 		Session session = sessionFactory.getCurrentSession();
 		Query<Hangout> query = session.createQuery(hql, Hangout.class);

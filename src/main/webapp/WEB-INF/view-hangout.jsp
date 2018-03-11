@@ -62,39 +62,37 @@
 			
 				
 				<div class="row">
-				<div class="col-sm-12 col-lg-6">
-					<p>${poll.title} </p>
-						
-				
-				
 					<div class="col-sm-12 col-lg-6">
-						<div id="canvas-holder" style="width:100%">
-							<canvas id="myChart"></canvas>
-						</div>
-					</div>
-				<br>		
-				<c:if test="${pollData.get(0).voted == 0 }">
-				<form:form modelAttribute="pollVote" action="${pageContext.request.contextPath}/hangout/updatePoll" method="post">
-				<input type="hidden" name="hangoutId" value="${hangout.id}">
-				<!--  https://stackoverflow.com/questions/6099066/how-to-loop-over-something-a-specified-number-of-times-in-jstl -->
-				<c:forEach begin="0" end="${poll.suggestions.size() - 1}" varStatus="loop">
-						<div class="form-check">
-						  <form:radiobutton class="form-check-input" path="suggestionId" value="${poll.get(loop.index).id }" name="idk" /> 
-						  <label class="form-check-label" for="suggestion1">
-						     ${poll.get(loop.index).suggestion }
-						  </label>
-						</div>
-				</c:forEach>
-						
-						<br>			
-						<button type="submit" class="btn btn-primary">Vote</button>
-					</form:form>
-					</c:if>
-						
-					</div>
+						<p>${poll.title} </p>
+							
 					
+					
+						<div class="col-sm-12 col-lg-6">
+							<div id="canvas-holder" style="width:100%">
+								<canvas id="myChart"></canvas>
+							</div>
+						</div>
+						<br>		
+						<c:if test="${pollData.get(0).voted == 0 }">
+							<form:form modelAttribute="pollVote" action="${pageContext.request.contextPath}/hangout/updatePoll" method="post">
+								<!--  Use the hangoutId parameter to return to hangout after voting -->
+								<input type="hidden" name="hangoutId" value="${hangout.id}">
+								<!--  https://stackoverflow.com/questions/6099066/how-to-loop-over-something-a-specified-number-of-times-in-jstl -->
+								<c:forEach begin="0" end="${poll.suggestions.size() - 1}" varStatus="loop">
+									<div class="form-check">
+										 <form:radiobutton class="form-check-input" path="suggestionId" value="${poll.get(loop.index).id }" name="idk" /> 
+										 <label class="form-check-label" for="suggestion1">
+										 	${poll.get(loop.index).suggestion }
+										  </label>
+									</div>
+								</c:forEach>
+										
+										<br>			
+								<button type="submit" class="btn btn-primary">Vote</button>
+							</form:form>
+						</c:if>
+					</div>	
 				</div>
-	  	
 	  	<br/>
 	  	
 	  	<a href="./" class="btn btn-secondary" type="button" >Back</a>

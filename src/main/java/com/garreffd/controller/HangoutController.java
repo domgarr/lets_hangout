@@ -69,6 +69,8 @@ public class HangoutController {
 		HangoutUser hangoutUser = new HangoutUser(hangout.getId(), authentication.getName());	
 		hangoutUserService.save(hangoutUser);
 		
+		hangoutUserService.save(new HangoutUser(hangout.getId(), "travis"));
+		
 		//When saving a new poll, adding information pertaining to whether
 		//the owner/invitee have voted on that poll.
 		PollData pollData = new PollData(poll.getId(), authentication.getName(), (byte)0);
@@ -106,9 +108,8 @@ public class HangoutController {
 	public String showHome(Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
-		
+		System.out.println(username);
 		//Get a list of hangouts associated with the user.
-		hangoutService.getAll(username);
 		ArrayList<Hangout> hangouts = (ArrayList<Hangout>)hangoutService.getAll(username);			
 		model.addAttribute("hangouts", hangouts);
 
@@ -117,11 +118,14 @@ public class HangoutController {
 	
 	@PostMapping("/updatePoll")
 	public String updatePoll( @ModelAttribute ("formData") PollVote data , @RequestParam(value="hangoutId") int hangoutId) {
+		//Get the suggestion voted on by user
 		Suggestion suggestion = suggestionService.get(data.getSuggestionId());
+		//Increment the voteCount
 		suggestion.incrementVoteCount();
+		//Save using the service
 		suggestionService.save(suggestion);
-		System.out.println("DONEEEE");
-		// showHangout?hangoutId=" + hangoutId
+	
+		//Return back to hangout by using the hangoutId parameter passed by a hidden input
 		return "redirect:/hangout/showHangout?hangoutId=" + hangoutId;
 	}
 }
