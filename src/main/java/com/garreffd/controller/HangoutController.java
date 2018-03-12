@@ -98,7 +98,6 @@ public class HangoutController {
 		model.addAttribute("poll", hangout.getPoll(0));
 		
 		List<PollData> pollData = pollDataService.getAll(authentication.getName());
-		System.out.println(pollData);
 		model.addAttribute("pollData", 	Search.pollData(pollData, hangout.getPoll(0).getId()));
 		
 		model.addAttribute("pollVote", new PollVote());
@@ -143,6 +142,14 @@ public class HangoutController {
 	public String addUser(@ModelAttribute("hangoutUser") HangoutUser hangoutUser) {
 		
 		hangoutUserService.save(hangoutUser);
+		
+		//Use hangoutId to get pollId
+		Hangout hangout = hangoutService.get(hangoutUser.getHangoutId());
+		int pollId = hangout.getPoll(0).getId();
+		//Add new row into db allowing for the tracking on if the invited user has voted on the poll
+		pollDataService.save(new PollData(pollId, hangoutUser.getUserId(), (byte) 0));
+		
+		
 		return "redirect:/hangout/showHangout?hangoutId=" + hangoutUser.getHangoutId(); 
 	}
 }
