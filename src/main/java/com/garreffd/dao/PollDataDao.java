@@ -19,7 +19,7 @@ public class PollDataDao implements Dao<PollData>{
 	
 	@Override
 	public void save(PollData entity) {
-		sessionFactory.getCurrentSession().save(entity);
+		sessionFactory.getCurrentSession().saveOrUpdate(entity);
 	}
 
 	@Override

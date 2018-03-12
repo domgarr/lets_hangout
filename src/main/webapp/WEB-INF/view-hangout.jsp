@@ -89,11 +89,19 @@
 								<canvas id="myChart"></canvas>
 							</div>
 						</div>
+						
+						
+						<p> ${pollData.get(0).pollId}</p>
+						<p> ${pollData.get(0).usernameId}</p>
+						<p> ${pollData.get(0).getVotedAsString()}</p>
 						<br>		
-						<c:if test="${pollData.get(0).voted == 0 }">
+						<c:set var = "didUserVote" scope = "session" value = "${pollData.get(0).getVotedAsString()}"/>
+						<c:if test="${didUserVote == '0'}">
 							<form:form modelAttribute="pollVote" action="${pageContext.request.contextPath}/hangout/updatePoll" method="post">
 								<!--  Use the hangoutId parameter to return to hangout after voting -->
 								<input type="hidden" name="hangoutId" value="${hangout.id}">
+								<!--  User pollId has a parameter to notify the DB that this user as voted, so that they can't see the options anymore -->
+								<input type="hidden" name="pollId" value="${poll.id}">
 								<!--  https://stackoverflow.com/questions/6099066/how-to-loop-over-something-a-specified-number-of-times-in-jstl -->
 								<c:forEach begin="0" end="${poll.suggestions.size() - 1}" varStatus="loop">
 									<div class="form-check">

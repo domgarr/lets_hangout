@@ -25,6 +25,8 @@ import com.garreffd.service.HangoutService;
 import com.garreffd.service.PollDataService;
 import com.garreffd.service.ServiceInterface;
 
+import utility.Search;
+
 @Controller
 @RequestMapping("/hangout")
 public class HangoutController {
@@ -83,22 +85,21 @@ public class HangoutController {
 	}
 	
 	@GetMapping("/showHangout")
-	public String showHangout(@RequestParam("hangoutId") int hangoutId,
-			Model model) {
+	public String showHangout(@RequestParam("hangoutId") int hangoutId, Model model) {
 		//Get user
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		
 		//get hangout from database
 		Hangout hangout = hangoutService.get(hangoutId);
-	
-		
-		
-		//set hang out as a model attribute
+
+		//set hangout as a model attribute
 		model.addAttribute("hangout", hangout);
 		//send over to page
 		model.addAttribute("poll", hangout.getPoll(0));
 		
-		model.addAttribute("pollData", 	pollDataService.getAll(authentication.getName()));
+		List<PollData> pollData = pollDataService.getAll(authentication.getName());
+		System.out.println(pollData);
+		model.addAttribute("pollData", 	Search.pollData(pollData, hangout.getPoll(0).getId()));
 		
 		model.addAttribute("pollVote", new PollVote());
 		model.addAttribute("hangoutUser", new HangoutUser());
@@ -110,25 +111,28 @@ public class HangoutController {
 	public String showHome(Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
-		System.out.println(username);
 		//Get a list of hangouts associated with the user.
 		ArrayList<Hangout> hangouts = (ArrayList<Hangout>)hangoutService.getAll(username);			
 		model.addAttribute("hangouts", hangouts);
-
+	
 		return "index";
 	}
 	
 	@PostMapping("/updatePoll")
-	public String updatePoll( @ModelAttribute ("formData") PollVote data , @RequestParam(value="hangoutId") int hangoutId) {
+	public String updatePoll( @ModelAttribute ("formData") PollVote data , @RequestParam Map<String, String> params) {
 		//Get the suggestion voted on by user
 		Suggestion suggestion = suggestionService.get(data.getSuggestionId());
 		//Increment the voteCount
 		suggestion.incrementVoteCount();
 		//Save using the service
 		suggestionService.save(suggestion);
+		
+		//Notify the db that this user has voted.
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		pollDataService.save(new PollData( Integer.valueOf(params.get("pollId")),authentication.getName(),(byte) 1) );
 	
 		//Return back to hangout by using the hangoutId parameter passed by a hidden input
-		return "redirect:/hangout/showHangout?hangoutId=" + hangoutId;
+		return "redirect:/hangout/showHangout?hangoutId=" + params.get("hangoutId");
 	}
 	
 	/* 

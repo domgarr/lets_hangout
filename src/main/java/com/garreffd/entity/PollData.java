@@ -26,7 +26,8 @@ public class PollData implements Serializable {
 
 	public PollData() {
 	}
-
+	
+	//TODO: rename constructor variable
 	public PollData(int suggestionId, String usernameId, byte voted) {
 		this.pollId = suggestionId;
 		this.usernameId = usernameId;
@@ -55,6 +56,10 @@ public class PollData implements Serializable {
 
 	public void setVoted(byte voted) {
 		this.voted = voted;
+	}
+	
+	public String getVotedAsString() {
+		return String.valueOf(voted);
 	}
 	
 	
