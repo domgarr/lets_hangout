@@ -89,11 +89,7 @@
 								<canvas id="myChart"></canvas>
 							</div>
 						</div>
-						
-						
-						<p> ${pollData.get(0).pollId}</p>
-						<p> ${pollData.get(0).usernameId}</p>
-						<p> ${pollData.get(0).getVotedAsString()}</p>
+					
 						<br>		
 						<c:set var = "didUserVote" scope = "session" value = "${pollData.get(0).getVotedAsString()}"/>
 						<c:if test="${didUserVote == '0'}">
