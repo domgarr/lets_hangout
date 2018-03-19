@@ -8,15 +8,14 @@ The application allows user to create hangouts, a hangout is a page containing:
 For anyone to see the hangout they have to be invited.
 
 ## Project Status
-  Currently in development...
-    * Properly hash username passwords
-    * A sign-up page
-    * Form validation
-    * Notification. Ex. When a user is added to a hangout, or when a login is incorrect
-  This isn't a complete list.
+  Currently in development.
+   * Properly hash username passwords
+   * A sign-up page
+   * Form validation
+   * Notifiy when a user is added to a hangout, or when a login is incorrect
   
 ## Screenshots
-  TODO:
+  
 
 ## Prerequisites
   * IDE - I used Eclipse
